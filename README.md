@@ -1,37 +1,75 @@
-# Calculator Service API
+# 🧮 Calculator Service API
 
-A lightweight RESTful Calculator Service built using **Golang** and **Gin**. This project demonstrates clean backend architecture by separating routing, HTTP handlers, and business logic into independent layers.
+![Go](https://img.shields.io/badge/Go-1.24-00ADD8?logo=go&logoColor=white)
+![Gin](https://img.shields.io/badge/Framework-Gin-00AB66)
+![REST API](https://img.shields.io/badge/API-REST-blue)
+![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
 
----
-
-## Features
-
-* Perform basic arithmetic operations:
-
-  * Addition (`+`)
-  * Subtraction (`-`)
-  * Multiplication (`*`)
-  * Division (`/`)
-* JSON-based request and response
-* Structured error handling
-* Execution time included in responses
-* Clean project architecture (Router → Handler → Service)
+A lightweight **RESTful Calculator Service** built using **Golang** and the **Gin Web Framework**. This project was developed to practice backend engineering principles such as layered architecture, separation of concerns, request validation, structured error handling, and clean API design.
 
 ---
 
-## Tech Stack
+# 📖 Table of Contents
 
-* **Language:** Go
-* **Framework:** Gin
-* **Architecture:** Layered Architecture
-* **API Style:** REST
+- [Overview](#-overview)
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Project Structure](#-project-structure)
+- [Architecture](#-architecture)
+- [API Endpoint](#-api-endpoint)
+- [Request & Response](#-request--response)
+- [Error Handling](#-error-handling)
+- [API Demo](#-api-demo)
+- [Running the Project](#-running-the-project)
+- [Testing](#-testing)
+- [Future Improvements](#-future-improvements)
+- [Learning Outcomes](#-learning-outcomes)
 
 ---
 
-## Project Structure
+# 📌 Overview
+
+Many internal teams rely on spreadsheets or manual calculations for simple arithmetic operations, leading to repetitive work and inconsistent results.
+
+This project provides a centralized Calculator API that other internal services can consume to perform arithmetic operations through HTTP requests.
+
+The service is intentionally simple but follows production-oriented backend architecture.
+
+---
+
+# ✨ Features
+
+- ➕ Addition
+- ➖ Subtraction
+- ✖️ Multiplication
+- ➗ Division
+- RESTful API
+- JSON Request & Response
+- Layered Architecture
+- Structured Error Responses
+- Execution Time Measurement
+- Lightweight & Stateless
+
+---
+
+# 🚀 Tech Stack
+
+| Technology | Purpose |
+|------------|---------|
+| Go | Programming Language |
+| Gin | HTTP Web Framework |
+| JSON | Data Exchange |
+| Postman | API Testing |
+
+---
+
+# 📂 Project Structure
 
 ```text
 calculator/
+│
+├── assets/
+│   └── calculator_api_demo.png
 │
 ├── cmd/
 │   └── api/
@@ -49,11 +87,72 @@ calculator/
 
 ---
 
-## API Endpoint
+# 🏗️ Architecture
 
-### Calculate
+```
+                HTTP Request
+                      │
+                      ▼
+                Gin Router
+                      │
+                      ▼
+                 HTTP Handler
+                      │
+                      ▼
+              Calculator Service
+                      │
+             Business Logic
+                      │
+                      ▼
+                 HTTP Handler
+                      │
+                      ▼
+                JSON Response
+```
 
-**POST** `/cal`
+## Responsibilities
+
+### Router
+
+- Registers application routes.
+- Directs incoming requests to handlers.
+
+### Handler
+
+- Parses incoming JSON.
+- Validates requests.
+- Calls the service layer.
+- Handles errors.
+- Returns HTTP responses.
+
+### Service
+
+- Contains business logic.
+- Performs arithmetic operations.
+- Returns calculation results.
+- Independent of HTTP/Gin.
+
+---
+
+# 🌐 API Endpoint
+
+## Calculate
+
+**POST**
+
+```
+/cal
+```
+
+---
+
+# 📥 Request
+
+### Headers
+
+```
+Content-Type: application/json
+```
 
 ### Request Body
 
@@ -65,43 +164,42 @@ calculator/
 }
 ```
 
-### Successful Response
+---
+
+# 📤 Successful Response
 
 ```json
 {
     "answer": 55,
     "operation": "+",
-    "executionTime": "430.097µs"
+    "executionTime": "232.932µs"
 }
-
-
-<img width="1232" height="566" alt="Screenshot From 2026-07-10 02-28-45" src="https://github.com/user-attachments/assets/1190e1fc-3d62-4351-bb77-ba1d037f776a" />
-
-
 ```
 
 ---
 
-## Supported Operations
+# Supported Operations
 
-| Operator | Description    |
-| -------- | -------------- |
-| `+`      | Addition       |
-| `-`      | Subtraction    |
-| `*`      | Multiplication |
-| `/`      | Division       |
+| Operator | Description |
+|----------|-------------|
+| + | Addition |
+| - | Subtraction |
+| * | Multiplication |
+| / | Division |
 
 ---
 
-## Error Responses
+# ❌ Error Handling
 
-### Division by Zero
+### Division By Zero
 
 ```json
 {
     "error": "Cannot Divide By Zero"
 }
 ```
+
+---
 
 ### Invalid Operator
 
@@ -110,6 +208,8 @@ calculator/
     "error": "Invalid operator"
 }
 ```
+
+---
 
 ### Invalid JSON
 
@@ -121,28 +221,63 @@ calculator/
 
 ---
 
-## Running the Project
+# 📷 API Demo
 
-Clone the repository:
+The screenshot below demonstrates a successful API request using Postman.
+
+### Request
+
+```json
+{
+    "operand1": 50,
+    "operand2": 5,
+    "operation": "+"
+}
+```
+
+### Response
+
+```json
+{
+    "answer": 55,
+    "operation": "+",
+    "executionTime": "232.932µs"
+}
+```
+
+### Postman Demo
+
+![Calculator API Demo](assets/calculator_api_demo.png)
+
+---
+
+# ⚙️ Running the Project
+
+Clone the repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/<your-username>/calculator.git
+```
+
+Navigate into the project
+
+```bash
 cd calculator
 ```
 
-Install dependencies:
+Install dependencies
 
 ```bash
 go mod tidy
 ```
 
-Run the server:
+Run the application
 
 ```bash
 go run ./cmd/api
 ```
 
-The server starts on:
+Server starts on
 
 ```
 http://localhost:8000
@@ -150,108 +285,64 @@ http://localhost:8000
 
 ---
 
-## Testing
+# 🧪 Testing
 
-You can test the API using:
+The API was tested using **Postman**.
 
-* Postman
-* Bruno
-* Insomnia
-* curl
+### Happy Path Tests
 
-Example:
+- ✅ Addition
+- ✅ Subtraction
+- ✅ Multiplication
+- ✅ Division
 
-```bash
-curl -X POST http://localhost:8000/cal \
--H "Content-Type: application/json" \
--d '{
-    "operand1":10,
-    "operand2":20,
-    "operation":"+"
-}'
-```
+### Error Tests
+
+- ✅ Division by Zero
+- ✅ Invalid Operator
+- ✅ Invalid JSON
+- ✅ Incorrect Data Types
 
 ---
 
-## Architecture
+# 📈 Future Improvements
 
-```text
-Client
-   │
-HTTP Request
-   │
-Router
-   │
-Handler
-   │
-Service
-   │
-Business Logic
-   │
-Handler
-   │
-HTTP Response
-   │
-Client
-```
-
-### Responsibilities
-
-#### Router
-
-* Registers API endpoints.
-* Maps incoming requests to handlers.
-
-#### Handler
-
-* Parses JSON requests.
-* Validates incoming data.
-* Calls the service layer.
-* Handles errors.
-* Returns JSON responses.
-
-#### Service
-
-* Contains business logic.
-* Performs arithmetic calculations.
-* Returns the result or an error.
-* Has no dependency on HTTP or Gin.
+- Scientific Calculator
+- Multiple Operand Support
+- Expression Parsing (`10 + 20 * 5`)
+- Request Validation using `validator`
+- Swagger/OpenAPI Documentation
+- Unit Tests
+- Docker Support
+- Logging Middleware
+- Configuration Management
+- API Versioning
+- Rate Limiting
+- Authentication
 
 ---
 
-## Future Improvements
-
-* Scientific calculator operations
-* Input validation using struct tags
-* Unit tests
-* Swagger/OpenAPI documentation
-* Request logging middleware
-* Docker support
-* Configuration management
-* API versioning
-* Rate limiting
-* Authentication
-
----
-
-## Learning Outcomes
+# 🎯 Learning Outcomes
 
 This project helped reinforce:
 
-* REST API development with Gin
-* Clean architecture principles
-* Separation of concerns
-* Request and response DTOs
-* JSON binding
-* Error handling in Go
-* Layered backend design
-* Measuring request execution time
-* Building maintainable backend services
+- Building REST APIs using Gin
+- Layered Backend Architecture
+- Separation of Concerns
+- Request/Response DTOs
+- JSON Binding
+- Error Handling in Go
+- Service Layer Design
+- Measuring Request Execution Time
+- API Testing using Postman
+- Writing Engineering Design Notes (EDN) before implementation
 
 ---
 
-## Author
+# 👨‍💻 Author
 
 **Adarsh Teli**
 
-Built as part of a Golang Backend Engineering learning journey focused on writing production-style Go services using clean architecture and engineering best practices.
+Backend Engineering Portfolio Project
+
+Built as part of a hands-on Golang Backend Engineering journey focused on writing production-style Go services with clean architecture and engineering best practices.
