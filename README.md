@@ -69,12 +69,14 @@ calculator/
 
 ```json
 {
-    "operand1": 50,
-    "operand2": 5,
-    "operation": "+",
     "answer": 55,
+    "operation": "+",
     "executionTime": "430.097µs"
 }
+
+
+<img width="1232" height="566" alt="image" src="https://github.com/user-attachments/assets/c535947d-a27c-4e65-bdac-457cbe6dec03" />
+
 ```
 
 ---
