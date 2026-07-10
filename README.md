@@ -75,7 +75,8 @@ calculator/
 }
 
 
-<img width="1232" height="566" alt="image" src="https://github.com/user-attachments/assets/c535947d-a27c-4e65-bdac-457cbe6dec03" />
+<img width="1232" height="566" alt="Screenshot From 2026-07-10 02-28-45" src="https://github.com/user-attachments/assets/1190e1fc-3d62-4351-bb77-ba1d037f776a" />
+
 
 ```
 
