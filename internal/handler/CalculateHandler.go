@@ -10,9 +10,9 @@ import (
 )
 
 type Request struct {
-	Operand1  float64 `json:"operand1"`
-	Operand2  float64 `json:"operand2"`
-	Operation string  `json:"operation"`
+	Operand1  float64 `json:"operand1" binding:"required"`
+	Operand2  float64 `json:"operand2" binding:"required"`
+	Operation string  `json:"operation" binding:"required"`
 }
 type Response struct {
 	Operand1      float64 `json:"operand1"`
@@ -28,7 +28,7 @@ func CalculateHandler() gin.HandlerFunc {
 		var calculate Request
 		start := time.Now()
 
-		if err := c.BindJSON(&calculate); err != nil {
+		if err := c.ShouldBindJSON(&calculate); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			fmt.Println(err)
 			return
