@@ -256,7 +256,7 @@ The screenshot below demonstrates a successful API request using Postman.
 Clone the repository
 
 ```bash
-git clone https://github.com/<your-username>/calculator.git
+git clone https://github.com/adarshteli1/calculator.git
 ```
 
 Navigate into the project
