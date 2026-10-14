@@ -41,7 +41,7 @@ func CalculateHandler() gin.HandlerFunc {
 			return
 		}
 		t := time.Now()
-		executime := t.Sub(start)
+		executime := t.Sub(start)  // Or could have written as executiontime:=time.Now().Sub(start)
 
 		answer := Response{
 			Operand1:      calculate.Operand1,
