@@ -10,8 +10,8 @@ import (
 )
 
 type Request struct {
-	Operand1  float64 `json:"operand1" binding:"required"`
-	Operand2  float64 `json:"operand2" binding:"required"`
+	Operand1  *float64 `json:"operand1" binding:"required"`
+	Operand2  *float64 `json:"operand2" binding:"required"`
 	Operation string  `json:"operation" binding:"required"`
 }
 type Response struct {
@@ -44,8 +44,8 @@ func CalculateHandler() gin.HandlerFunc {
 		executime := t.Sub(start)  // Or could have written as executiontime:=time.Now().Sub(start)
 
 		answer := Response{
-			Operand1:      calculate.Operand1,
-			Operand2:      calculate.Operand2,
+			Operand1:      *calculate.Operand1,
+			Operand2:      *calculate.Operand2,
 			Operation:     calculate.Operation,
 			Answer:        resp,
 			ExecutionTime: executime.String(),
