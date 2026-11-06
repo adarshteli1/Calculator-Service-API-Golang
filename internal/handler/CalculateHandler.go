@@ -33,7 +33,7 @@ func CalculateHandler() gin.HandlerFunc {
 			fmt.Println(err)
 			return
 		}
-		resp, err := service.Calculate(calculate.Operand1, calculate.Operand2, calculate.Operation)
+		resp, err := service.Calculate(*calculate.Operand1, *calculate.Operand2, calculate.Operation)
 
 		if err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
