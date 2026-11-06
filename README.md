@@ -345,4 +345,4 @@ This project helped reinforce:
 
 Backend Engineering Portfolio Project
 
-Built as part of a hands-on Golang Backend Engineering journey focused on writing production-style Go services with clean architecture and engineering best practices.
+Built as part of a hands-on Golang Backend Engineering journey focused on writing production-style Go services with layered architecture and engineering best practices.
